@@ -40,7 +40,7 @@ class Model:
         e = list(self._grafo.edges(data=True))
         e.sort(key=lambda x: x[2]["weight"], reverse=True)
         arcPes=e[:5]
-        return self._grafo.number_of_nodes(), self._grafo.number_of_edges(), artInf, arcPes
+        return self._grafo.number_of_nodes(), self._grafo.number_of_edges(), artInf, arcPes, [self._idMapArtists[i] for i,j in a]
 
 
 

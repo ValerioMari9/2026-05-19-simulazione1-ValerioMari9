@@ -25,7 +25,7 @@ class Controller:
         self.readGenre(1)
         if self._gnrID is None:
             return
-        nN, nE, art,arc = self._model.creaGrafo(self._gnrID)
+        nN, nE, art,arc, artList = self._model.creaGrafo(self._gnrID)
         self._view.txt_result.controls.clear()
         self._view.txt_result.controls.append(ft.Text(f"Nodi: {nN}"))
         self._view.txt_result.controls.append(ft.Text(f"Archi: {nE}"))
