@@ -1,0 +1,9 @@
+from dataclasses import dataclass
+@dataclass
+class Genre:
+    GenreId: int
+    Name: str
+    def __eq__(self, other):
+        return self.GenreID==other.GenreID
+    def __hash__(self):
+        return hash(self.GenreID)
