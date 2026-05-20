@@ -26,8 +26,16 @@ class Model:
                 self._grafo.add_edge(self._idMapArtists[j], self._idMapArtists[i], weight=pi + pj)
             else:
                 self._grafo.add_edge(self._idMapArtists[j], self._idMapArtists[i], weight=pi + pj)
-        s=list(self._grafo.nodes(data=True))
-        s.sort(key=lambda x: x[1]["pop"], reverse=True)
+        s=list()
+        for i in self._grafo.nodes:
+            en=0
+            ex=0
+            for j in self._grafo.in_edges(i, data=True):
+                en+=j[2]["weight"]
+            for j in self._grafo.out_edges(i, data=True):
+                ex+=j[2]["weight"]
+            s.append((i, ex-en))
+        s.sort(key=lambda x: x[1], reverse=True)
         artInf=s[0]
         e = list(self._grafo.edges(data=True))
         e.sort(key=lambda x: x[2]["weight"], reverse=True)
