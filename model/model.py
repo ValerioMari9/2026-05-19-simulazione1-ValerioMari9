@@ -14,16 +14,11 @@ class Model:
         for i,j in a:
             self._grafo.add_node(self._idMapArtists[i], pop=j)
         e=DAO.getEdges(gen)
-        print(e)
         p=nx.get_node_attributes(self._grafo, "pop")
         n=0
-        for q in e:
-            n+=1
-            i=q[0]
-            j=q[1]
+        for i,j in e:
             pi=p[self._idMapArtists[i]]
             pj=p[self._idMapArtists[j]]
-            print((pi, pj))
             if pi > pj:
                 self._grafo.add_edge(self._idMapArtists[i], self._idMapArtists[j], weight=pi+pj)
             elif pi == pj:
@@ -31,14 +26,13 @@ class Model:
                 self._grafo.add_edge(self._idMapArtists[j], self._idMapArtists[i], weight=pi + pj)
             else:
                 self._grafo.add_edge(self._idMapArtists[j], self._idMapArtists[i], weight=pi + pj)
-            s=list(self._grafo.nodes(data=True))
-            s.sort(key=lambda x: x[1]["pop"], reverse=True)
-            artInf=s[0]
-            e = list(self._grafo.edges(data=True))
-            e.sort(key=lambda x: x[2]["weight"], reverse=True)
-            arcPes=e[:4]
-            print(f"n {n}")
-            return self._grafo.number_of_nodes(), self._grafo.number_of_edges(), artInf, arcPes
+        s=list(self._grafo.nodes(data=True))
+        s.sort(key=lambda x: x[1]["pop"], reverse=True)
+        artInf=s[0]
+        e = list(self._grafo.edges(data=True))
+        e.sort(key=lambda x: x[2]["weight"], reverse=True)
+        arcPes=e[:5]
+        return self._grafo.number_of_nodes(), self._grafo.number_of_edges(), artInf, arcPes
 
 
 

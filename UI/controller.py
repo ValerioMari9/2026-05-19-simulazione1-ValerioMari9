@@ -29,6 +29,11 @@ class Controller:
         self._view.txt_result.controls.clear()
         self._view.txt_result.controls.append(ft.Text(f"Nodi: {nN}"))
         self._view.txt_result.controls.append(ft.Text(f"Archi: {nE}"))
+        self._view.txt_result.controls.append(ft.Text(f"Artista piu influente: {art[0].Name}, influenza: {art[1]["pop"]}"))
+        self._view.txt_result.controls.append(ft.Text(f"Top 5 archi"))
+        for n,i in enumerate(arc):
+            self._view.txt_result.controls.append(
+                ft.Text(f"{n+1}: {i[0].Name}->, {i[1].Name}: {i[2]["weight"]}"))
         self._view.update_page()
 
 
